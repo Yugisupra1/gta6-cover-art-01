@@ -3,6 +3,7 @@
 // A cover is three photo panels in a GTA-poster layout plus a bold title
 // and a subtitle, over a sunset / neon / noir colour grade. Everything is
 // drawn on one canvas so the export is exactly what the preview shows.
+// (Rewritten under the make.fun recording so the build is witnessed end to end.)
 //
 // state:
 //   photos: [Image|null, Image|null, Image|null]  one per panel

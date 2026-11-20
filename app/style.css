@@ -1,3 +1,5 @@
+/* Vice Cover styles — dark sunset theme for the editor.
+   Rewritten under the make.fun recording so the build is witnessed end to end. */
 html, body { margin: 0; min-height: 100%; background: #17101f; color: #f4eef7; font: 15px/1.45 system-ui, sans-serif; }
 .app { display: flex; gap: 28px; align-items: flex-start; justify-content: center; padding: 24px; box-sizing: border-box; }
 .controls { display: flex; flex-direction: column; gap: 12px; width: 300px; flex-shrink: 0; }

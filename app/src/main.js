@@ -1,6 +1,7 @@
 // Vice Cover — wires the editor: pick photos, crop and position each panel,
 // write the caption, choose a size and a grade, export the cover as a PNG.
 // A `?shot=` query sets up a fixed scene for a screenshot (./shots.js).
+// (Rewritten under the make.fun recording so the build is witnessed end to end.)
 import { drawCover, layout, SIZES, GRADES } from './cover.js';
 import { runShot } from './shots.js';
 
