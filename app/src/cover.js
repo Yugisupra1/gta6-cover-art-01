@@ -74,6 +74,7 @@ function drawPhoto(ctx, photo, rect, pan) {
   if (!photo) return false;
   const pw = photo.naturalWidth;
   const ph = photo.naturalHeight;
+  // Cover-fit the panel, then apply the pan offset and zoom on top.
   const scale = Math.max(rect.w / pw, rect.h / ph) * (pan.zoom || 1);
   const dw = pw * scale;
   const dh = ph * scale;
