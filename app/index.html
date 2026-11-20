@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Cover — GTA-style cover art maker</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main class="app">
+  <section class="controls">
+    <h1>Vice Cover</h1>
+    <p>Three panels, one sunset, your caption — a GTA-style poster cover, exported as a PNG.</p>
+
+    <fieldset>
+      <legend>Photos — click a panel, then load a photo into it</legend>
+      <div class="panels">
+        <button type="button" data-panel="0" class="active">Panel 1 · Hero</button>
+        <button type="button" data-panel="1">Panel 2</button>
+        <button type="button" data-panel="2">Panel 3</button>
+      </div>
+      <label>Your photo <input id="photo" type="file" accept="image/*"></label>
+      <div class="samples">
+        <span>Or try a sample:</span>
+        <button type="button" data-sample="pier">Pier</button>
+        <button type="button" data-sample="neon">Neon</button>
+        <button type="button" data-sample="palm">Palm</button>
+        <button type="button" data-sample="boulevard">Boulevard</button>
+      </div>
+      <button type="button" id="sample-all">Fill all three panels</button>
+      <label>Zoom <input id="zoom" type="range" min="1" max="2.5" step="0.05" value="1"></label>
+      <p class="hint">Drag on the preview to move the selected panel's photo.</p>
+    </fieldset>
+
+    <label>Title <input id="caption" type="text" maxlength="30" value="Vice City"></label>
+    <label>Subtitle <input id="subtitle" type="text" maxlength="40" value="Sunset Heist"></label>
+
+    <label>Size
+      <select id="size">
+        <option value="square" selected>Square · 1080 x 1080</option>
+        <option value="portrait">Portrait · 1080 x 1350</option>
+        <option value="landscape">Wide · 1920 x 1080</option>
+      </select>
+    </label>
+    <label>Colour grade
+      <select id="grade">
+        <option value="sunset" selected>Sunset</option>
+        <option value="neon">Neon</option>
+        <option value="noir">Noir</option>
+      </select>
+    </label>
+
+    <button id="export" type="button">Export PNG</button>
+    <p id="status" role="status"></p>
+  </section>
+  <canvas id="cover" width="1080" height="1080" aria-label="The cover preview"></canvas>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
