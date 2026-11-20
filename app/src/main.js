@@ -1,8 +1,10 @@
-// Vice Cover — wires the editor: pick photos, crop and position each panel,
-// write the caption, choose a size and a grade, export the cover as a PNG.
-// A `?shot=` query sets up a fixed scene for a screenshot (./shots.js).
-// (Rewritten under the make.fun recording so the build is witnessed end to end.)
-import { drawCover, layout, SIZES, GRADES } from './cover.js';
+// Vice Cover — the editor wiring.
+//
+// Connects the controls to the drawing engine: pick a panel, load a photo
+// into it (your own file or a sample), drag the photo around inside its
+// panel, zoom, write the caption, choose a size and a grade, export a PNG.
+// A `?shot=` query sets up a fixed scene for screenshots (see shots.js).
+import { drawCover, layout, SIZES } from './cover.js';
 import { runShot } from './shots.js';
 
 const canvas = document.getElementById('cover');
@@ -24,24 +26,20 @@ const state = {
 };
 let selected = 0;
 
-function resizeCanvas() {
+function redraw() {
   const s = SIZES[state.size];
   canvas.width = s.w;
   canvas.height = s.h;
-}
-
-function redraw() {
-  resizeCanvas();
   state.title = titleInput.value;
   state.subtitle = subtitleInput.value;
   state.size = sizeSelect.value;
   state.grade = gradeSelect.value;
   drawCover(canvas, state);
   panelButtons.forEach((b, i) => b.classList.toggle('active', i === selected));
-  zoomInput.value = state.pans[selected].zoom;
+  zoomInput.value = String(state.pans[selected].zoom);
 }
 
-/** Loads an image from a URL, resolving once it can be drawn. */
+/** Loads an image from a URL and resolves once it can be drawn. */
 export function loadImage(url) {
   return new Promise((resolve, reject) => {
     const img = new Image();
@@ -80,13 +78,15 @@ zoomInput.addEventListener('input', () => {
   redraw();
 });
 
-// Drag on the canvas pans the selected panel's photo.
+// Drag on the canvas pans the selected panel's photo. Clicking a panel
+// selects it first; the drag then moves that panel's photo. The pan is
+// stored in panel fractions (-1..1) so it survives a size change.
 let dragging = null;
 function panelAt(cx, cy) {
   const r = canvas.getBoundingClientRect();
   const x = (cx - r.left) / r.width;
   const y = (cy - r.top) / r.height;
-  const panels = layout(state.size);
+  const panels = layout(state.size).filter((p) => !p.band);
   for (let i = 0; i < panels.length; i++) {
     const p = panels[i];
     if (x >= p.x && x < p.x + p.w && y >= p.y && y < p.y + p.h) return i;

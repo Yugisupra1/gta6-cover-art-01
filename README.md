@@ -10,7 +10,7 @@
 
 Three photo panels in a poster layout (a hero panel plus two smaller ones), a bold outlined title and subtitle, and a Vice City sunset, neon or noir colour grade — all drawn live on canvas.
 
-- **Any photo**: load your own photos from your machine into each panel, or try the four free samples. Click a panel to select it, drag on the preview to move its photo, use the zoom slider to crop in.
+- **Any photo**: load your own photos from your machine into each panel, or try the four free samples. Click a panel to select it, drag on the preview to move its photo, use the zoom slider to crop in. Photos are read locally and never uploaded anywhere.
 - **Fill all three panels** with one click, or mix one photo across panels.
 - **Caption**: edit the title and subtitle; the lettering is bold, outlined, GTA-poster style.
 - **Sizes**: Square 1080 x 1080, Portrait 1080 x 1350, Wide 1920 x 1080.

@@ -1,5 +1,6 @@
-/* Vice Cover styles — dark sunset theme for the editor.
-   Rewritten under the make.fun recording so the build is witnessed end to end. */
+/* Vice Cover — dark editor theme. The cover itself is drawn on canvas;
+   this stylesheet only styles the editing page around it. Colours are
+   picked to echo the sunset grade: deep purple page, amber accents. */
 html, body { margin: 0; min-height: 100%; background: #17101f; color: #f4eef7; font: 15px/1.45 system-ui, sans-serif; }
 .app { display: flex; gap: 28px; align-items: flex-start; justify-content: center; padding: 24px; box-sizing: border-box; }
 .controls { display: flex; flex-direction: column; gap: 12px; width: 300px; flex-shrink: 0; }
@@ -20,7 +21,8 @@ button:hover { background: #ffa14d; }
 #sample-all { background: #3a2a4d; color: #f4eef7; }
 .hint { font-size: 13px; }
 #status { color: #7be3c3; min-height: 1.2em; }
-canvas { width: min(72vh, 62vw); height: auto; aspect-ratio: auto; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); background: #2b1055; }
+canvas { width: min(72vh, 62vw); height: auto; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); background: #2b1055; }
+/* Screenshot mode: hide the controls so only the cover shows. */
 body.shot-cover .controls { display: none; }
 body.shot-cover .app { padding: 0; }
 body.shot-cover canvas { width: 100vw; height: 100vh; object-fit: contain; box-shadow: none; }

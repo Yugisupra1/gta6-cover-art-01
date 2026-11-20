@@ -1,8 +1,10 @@
-// Fixed scenes for screenshots: ?shot=editor shows the page with sample photos
-// loaded; ?shot=cover shows the cover alone. `photos` picks the samples
-// (samples/<name>.jpg, in panel order), `title`, `subtitle`, `size` and
-// `grade` set the rest. window.__shotReady is set once painted.
-// (Rewritten under the make.fun recording so the build is witnessed end to end.)
+// Fixed scenes for screenshots.
+//
+// ?shot=editor shows the page with sample photos loaded; ?shot=cover shows
+// the cover alone (the controls are hidden). Query params pick the scene:
+// `photos` is a comma list of sample names in panel order, `title`,
+// `subtitle`, `size` and `grade` set the rest. window.__shotReady is set
+// once the cover has been painted, so a screenshot script can wait on it.
 export async function runShot(shot, query, load) {
   if (shot === 'cover') document.body.classList.add('shot-cover');
   const photos = (query.get('photos') || 'pier,neon,palm').split(',');
@@ -13,5 +15,7 @@ export async function runShot(shot, query, load) {
     size: query.get('size') ?? 'square',
     grade: query.get('grade') ?? 'sunset',
   });
+  // Two frames: one to let the canvas paint, one to let it settle, so the
+  // screenshot catches the finished cover rather than a half-drawn one.
   requestAnimationFrame(() => requestAnimationFrame(() => { window.__shotReady = true; }));
 }
